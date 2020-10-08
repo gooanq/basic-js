@@ -57,5 +57,5 @@ const deeperFakeDate = {
 };
 Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
 
-console.log(Object.prototype.toString.call(535));
+//console.log(Object.prototype.toString.call(deeperFakeDate));
 //console.log(getSeason(deeperFakeDate));
