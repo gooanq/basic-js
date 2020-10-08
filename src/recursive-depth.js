@@ -1,4 +1,6 @@
 const CustomError = require("../extensions/custom-error");
+
+//First try. Recursively but the test has another opinion((
 // class DepthCalculator {
 //   max = [];
 //   calculateDepth(arr) {
@@ -21,27 +23,21 @@ const CustomError = require("../extensions/custom-error");
 
 
 class DepthCalculator {
-  max = 0;
-
-  calculateDepth(arr, lvl = 1) {
+  calculateDepth(arr, lvl = 1, max = [lvl]) {
 
     arr.forEach(item => {
       if (Array.isArray(item)) {
-        this.calculateDepth(item, lvl + 1);
+        max.push(lvl+1);
+        this.calculateDepth(item, lvl + 1, max);
       }
     });
 
-    if (lvl > this.max) {
-      this.max = lvl;
-    }
-
-    return this.max;
+    return Math.max(...max);
   };
-
 }
 
 module.exports = DepthCalculator;
 
 
 const dc = new DepthCalculator();
-console.log(dc.calculateDepth([[[[[]]]]]));
+console.log(dc.calculateDepth([1, 2, 3, 4, 5,]));
